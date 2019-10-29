@@ -1,0 +1,32 @@
+clc;
+clear;
+oi=imread('watermarked.tif');
+wi=oi;
+[row col]=size(wi);
+wi=double(wi);
+wi=wi(:);
+n=floor((row*col)/10);
+r=1.6;
+rand('state',123);
+%rng(123,'v5uniform');
+a=rand(1,n);
+d=2.3;
+count=0;
+k=1;
+tempa=0;
+tempb=0;
+while k<=n
+    if(a(1,k)>=0.5)
+       tempa=tempa+wi(k*10,1);
+       tempb=tempb+wi(k*10-1,1);
+       count=count+1;
+    end
+k=k+1;
+end
+avea=(tempa)/count;
+aveb=(tempb)/count;
+if((avea-aveb)>r*d)
+    disp("含有水印")
+else 
+    disp("没有水印")
+end
