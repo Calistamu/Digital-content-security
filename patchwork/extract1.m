@@ -1,6 +1,6 @@
 clc;
 clear;
-oi=imread('watermarked.tif');
+oi=imread('watermarked.bmp');
 wi=oi;
 [row col]=size(wi);
 wi=double(wi);
