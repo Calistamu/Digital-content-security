@@ -2,6 +2,8 @@
 # -*- coding=utf-8 - *-
 import cv2
 import numpy as np
+import numpy as np
+import math
 
 spread_width=5
 alpha=10
@@ -174,16 +176,30 @@ def extract(newpath,water):
            watermark+=char
            w=''
     
-    print(watermark)
+    print(watermark)  
+
+def psnr(img1, img2):
+   mse = np.mean((img1*1.0- img2*1.0) ** 2 )
+   if mse < 1.0e-10:
+      return 100
+   return 10 * math.log10(255.0**2/mse)
 
 if __name__=='__main__':
-        pictureurl='C:\\Users\\karen\\Documents\\GitHub\\Digital-content-security\\spread_spectrum_water\\testpic\\test10.bmp'#原图
-        newpictureurl='C:\\Users\\karen\\Documents\\GitHub\\Digital-content-security\\spread_spectrum_water\\wateredpic\\watered10.bmp'#嵌入水印后图
+        pictureurl='C:\\Users\\karen\\Documents\\GitHub\\Digital-content-security\\spread_spectrum_water\\testpic\\test1.bmp'#原图
+        newpictureurl='C:\\Users\\karen\\Documents\\GitHub\\Digital-content-security\\spread_spectrum_water\\wateredpic\\watered1.bmp'#嵌入水印后图
         #key=get_key1('chao')#没有扩频的水印
         #print('没有扩频的水印：\n')
         #print(key)
+        #keycode=''
+        #for i in range(1,100):
+            #keycode=keycode+'chao'
         key=get_key('chao')#水印内容
-        #print(key)#测试数据用
+            #print(key)#测试数据用
         embed(pictureurl,key,newpictureurl)#嵌入
         extract(newpictureurl,key)#提取
+            #img1=cv2.imread(pictureurl)
+            #img2=cv2.imread(newpictureurl)
+            #psnr=psnr(img1,img2)
+            #print(psnr)
+            #print('\n')
    
