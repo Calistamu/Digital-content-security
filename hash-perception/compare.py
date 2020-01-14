@@ -35,8 +35,8 @@ def cmpHash(hash1,hash2):
             n=n+1    
     return n 
 #加载图片
-img1=cv2.cv2.imread('C:/Users/karen/Documents/GitHub/Digital-content-security/hash-perception/img/10-1.jpg')
-img2=cv2.cv2.imread('C:/Users/karen/Documents/GitHub/Digital-content-security/hash-perception/img/10-3.jpg')
+img1=cv2.cv2.imread('C:/Users/karen/Documents/GitHub/Digital-content-security/hash-perception/img/2-1.jpg')
+img2=cv2.cv2.imread('C:/Users/karen/Documents/GitHub/Digital-content-security/hash-perception/img/2-2.jpg')
 #计算hash
 hash1= pHash(img1)
 hash2= pHash(img2)
