@@ -1,0 +1,36 @@
+clc;
+clear;
+oi=imread('lenacolor.tif');
+wi=oi;
+[row,col]=size(wi);
+wi=double(wi);
+wi=wi(:);
+oi=double(oi);
+oi=oi(:);
+n=floor((row*col)/10);
+length=row*col;
+rand('state',123);%产生随机数的序列
+%rng(123,'v5uniform');
+a=rand(1,n);%产生n长度的随机数
+d=2.3;
+count=0;
+k=1;
+while(k<=n)
+if(a(1,k)>=0.5)
+    wi(k*10,1)=wi(k*10,1)+d;
+    wi(k*10-1,1)=wi(k*10-1,1)-d;
+end
+k=k+1;
+end
+%wil(1000,1000)=0;
+for i=1:row
+    for j=1:col
+        wi1(i,j)=wi(row*(j-1)+i,1);
+    end
+end
+wi1=uint8(wi1);
+figure;
+imshow('lenacolor.tif');title('原始图像');
+imwrite(wi1,'watermarked.bmp');
+figure;
+imshow('watermarked.bmp');title('水印图像');
